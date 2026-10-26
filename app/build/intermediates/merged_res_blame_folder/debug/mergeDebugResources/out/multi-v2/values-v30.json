@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.example.aniplay.app-mergeDebugResources-60:/values-v30/values-v30.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\gusta\\.gradle\\caches\\9.3.0\\transforms\\483944737dc8fc7c9028cfc9d538fcf8\\workspace\\transformed\\material3-release\\res\\values-v30\\values-v30.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "72",
+                        "endOffsets": "123"
+                    }
+                }
+            ]
+        }
+    ]
+}
