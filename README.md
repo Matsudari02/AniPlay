@@ -1,5 +1,7 @@
 # AniPlay — base do projeto (Jetpack Compose + Hilt + Room + MVVM)
 
+Projeto acadêmico de aplicativo Android inspirado no Crunchyroll com Compose e MVVM.
+
 ## Como abrir
 1. Android Studio (Koala ou mais novo), JDK 17.
 2. File > Open > pasta `AniPlay`. Aguarde o Gradle Sync.
