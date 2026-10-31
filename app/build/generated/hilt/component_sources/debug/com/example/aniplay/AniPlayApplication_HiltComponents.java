@@ -1,7 +1,10 @@
 package com.example.aniplay;
 
 import com.example.aniplay.di.DatabaseModule;
+import com.example.aniplay.viewmodel.FavoritesViewModel_HiltModules;
 import com.example.aniplay.viewmodel.HomeViewModel_HiltModules;
+import com.example.aniplay.viewmodel.PlayerViewModel_HiltModules;
+import com.example.aniplay.viewmodel.ProfileViewModel_HiltModules;
 import dagger.Binds;
 import dagger.Component;
 import dagger.Module;
@@ -155,9 +158,12 @@ public final class AniPlayApplication_HiltComponents {
       modules = {
           ActivityCBuilderModule.class,
           ViewModelCBuilderModule.class,
+          FavoritesViewModel_HiltModules.KeyModule.class,
           HiltWrapper_ActivityRetainedComponentManager_LifecycleModule.class,
           HiltWrapper_SavedStateHandleModule.class,
-          HomeViewModel_HiltModules.KeyModule.class
+          HomeViewModel_HiltModules.KeyModule.class,
+          PlayerViewModel_HiltModules.KeyModule.class,
+          ProfileViewModel_HiltModules.KeyModule.class
       }
   )
   @ActivityRetainedScoped
@@ -193,8 +199,11 @@ public final class AniPlayApplication_HiltComponents {
 
   @Subcomponent(
       modules = {
+          FavoritesViewModel_HiltModules.BindsModule.class,
           HiltWrapper_HiltViewModelFactory_ViewModelModule.class,
-          HomeViewModel_HiltModules.BindsModule.class
+          HomeViewModel_HiltModules.BindsModule.class,
+          PlayerViewModel_HiltModules.BindsModule.class,
+          ProfileViewModel_HiltModules.BindsModule.class
       }
   )
   @ViewModelScoped
