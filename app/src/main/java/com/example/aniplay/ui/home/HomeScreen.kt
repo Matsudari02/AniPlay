@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
@@ -84,10 +85,17 @@ fun HomeContent(
                     )
                 },
                 actions = {
-                    IconButton(onClick = { /* TODO: tela de busca */ }) {
-                        Icon(Icons.Filled.Search, contentDescription = "Buscar")
-                    }
-                },
+                        IconButton(onClick = { /* TODO: ir para Perfil */ }) {
+                            Icon(
+                                imageVector = Icons.Filled.Person,
+                                contentDescription = "Perfil",
+                                tint = MaterialTheme.colorScheme.primary
+                            )
+                        }
+                        IconButton(onClick = { /* TODO: tela de busca */ }) {
+                            Icon(Icons.Filled.Search, contentDescription = "Buscar")
+                        }
+                    },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.background,
                 ),
