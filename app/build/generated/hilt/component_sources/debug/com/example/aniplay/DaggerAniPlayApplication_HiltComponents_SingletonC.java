@@ -8,11 +8,20 @@ import androidx.lifecycle.SavedStateHandle;
 import androidx.lifecycle.ViewModel;
 import com.example.aniplay.data.local.AniPlayDatabase;
 import com.example.aniplay.data.local.FavoriteAnimeDao;
+import com.example.aniplay.data.local.UserProfileDao;
 import com.example.aniplay.data.repository.AnimeRepository;
+import com.example.aniplay.data.repository.ProfileRepository;
 import com.example.aniplay.di.DatabaseModule_ProvideDatabaseFactory;
 import com.example.aniplay.di.DatabaseModule_ProvideFavoriteAnimeDaoFactory;
+import com.example.aniplay.di.DatabaseModule_ProvideUserProfileDaoFactory;
+import com.example.aniplay.viewmodel.FavoritesViewModel;
+import com.example.aniplay.viewmodel.FavoritesViewModel_HiltModules;
 import com.example.aniplay.viewmodel.HomeViewModel;
 import com.example.aniplay.viewmodel.HomeViewModel_HiltModules;
+import com.example.aniplay.viewmodel.PlayerViewModel;
+import com.example.aniplay.viewmodel.PlayerViewModel_HiltModules;
+import com.example.aniplay.viewmodel.ProfileViewModel;
+import com.example.aniplay.viewmodel.ProfileViewModel_HiltModules;
 import dagger.hilt.android.ActivityRetainedLifecycle;
 import dagger.hilt.android.ViewModelLifecycle;
 import dagger.hilt.android.internal.builders.ActivityComponentBuilder;
@@ -33,6 +42,7 @@ import dagger.internal.DoubleCheck;
 import dagger.internal.IdentifierNameString;
 import dagger.internal.KeepFieldType;
 import dagger.internal.LazyClassKeyMap;
+import dagger.internal.MapBuilder;
 import dagger.internal.Preconditions;
 import dagger.internal.Provider;
 import java.util.Collections;
@@ -373,7 +383,7 @@ public final class DaggerAniPlayApplication_HiltComponents_SingletonC {
 
     @Override
     public Map<Class<?>, Boolean> getViewModelKeys() {
-      return LazyClassKeyMap.<Boolean>of(Collections.<String, Boolean>singletonMap(LazyClassKeyProvider.com_example_aniplay_viewmodel_HomeViewModel, HomeViewModel_HiltModules.KeyModule.provide()));
+      return LazyClassKeyMap.<Boolean>of(MapBuilder.<String, Boolean>newMapBuilder(4).put(LazyClassKeyProvider.com_example_aniplay_viewmodel_FavoritesViewModel, FavoritesViewModel_HiltModules.KeyModule.provide()).put(LazyClassKeyProvider.com_example_aniplay_viewmodel_HomeViewModel, HomeViewModel_HiltModules.KeyModule.provide()).put(LazyClassKeyProvider.com_example_aniplay_viewmodel_PlayerViewModel, PlayerViewModel_HiltModules.KeyModule.provide()).put(LazyClassKeyProvider.com_example_aniplay_viewmodel_ProfileViewModel, ProfileViewModel_HiltModules.KeyModule.provide()).build());
     }
 
     @Override
@@ -393,10 +403,25 @@ public final class DaggerAniPlayApplication_HiltComponents_SingletonC {
 
     @IdentifierNameString
     private static final class LazyClassKeyProvider {
+      static String com_example_aniplay_viewmodel_ProfileViewModel = "com.example.aniplay.viewmodel.ProfileViewModel";
+
       static String com_example_aniplay_viewmodel_HomeViewModel = "com.example.aniplay.viewmodel.HomeViewModel";
+
+      static String com_example_aniplay_viewmodel_PlayerViewModel = "com.example.aniplay.viewmodel.PlayerViewModel";
+
+      static String com_example_aniplay_viewmodel_FavoritesViewModel = "com.example.aniplay.viewmodel.FavoritesViewModel";
+
+      @KeepFieldType
+      ProfileViewModel com_example_aniplay_viewmodel_ProfileViewModel2;
 
       @KeepFieldType
       HomeViewModel com_example_aniplay_viewmodel_HomeViewModel2;
+
+      @KeepFieldType
+      PlayerViewModel com_example_aniplay_viewmodel_PlayerViewModel2;
+
+      @KeepFieldType
+      FavoritesViewModel com_example_aniplay_viewmodel_FavoritesViewModel2;
     }
   }
 
@@ -407,7 +432,13 @@ public final class DaggerAniPlayApplication_HiltComponents_SingletonC {
 
     private final ViewModelCImpl viewModelCImpl = this;
 
+    private Provider<FavoritesViewModel> favoritesViewModelProvider;
+
     private Provider<HomeViewModel> homeViewModelProvider;
+
+    private Provider<PlayerViewModel> playerViewModelProvider;
+
+    private Provider<ProfileViewModel> profileViewModelProvider;
 
     private ViewModelCImpl(SingletonCImpl singletonCImpl,
         ActivityRetainedCImpl activityRetainedCImpl, SavedStateHandle savedStateHandleParam,
@@ -422,12 +453,15 @@ public final class DaggerAniPlayApplication_HiltComponents_SingletonC {
     @SuppressWarnings("unchecked")
     private void initialize(final SavedStateHandle savedStateHandleParam,
         final ViewModelLifecycle viewModelLifecycleParam) {
-      this.homeViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 0);
+      this.favoritesViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 0);
+      this.homeViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 1);
+      this.playerViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 2);
+      this.profileViewModelProvider = new SwitchingProvider<>(singletonCImpl, activityRetainedCImpl, viewModelCImpl, 3);
     }
 
     @Override
     public Map<Class<?>, javax.inject.Provider<ViewModel>> getHiltViewModelMap() {
-      return LazyClassKeyMap.<javax.inject.Provider<ViewModel>>of(Collections.<String, javax.inject.Provider<ViewModel>>singletonMap(LazyClassKeyProvider.com_example_aniplay_viewmodel_HomeViewModel, ((Provider) homeViewModelProvider)));
+      return LazyClassKeyMap.<javax.inject.Provider<ViewModel>>of(MapBuilder.<String, javax.inject.Provider<ViewModel>>newMapBuilder(4).put(LazyClassKeyProvider.com_example_aniplay_viewmodel_FavoritesViewModel, ((Provider) favoritesViewModelProvider)).put(LazyClassKeyProvider.com_example_aniplay_viewmodel_HomeViewModel, ((Provider) homeViewModelProvider)).put(LazyClassKeyProvider.com_example_aniplay_viewmodel_PlayerViewModel, ((Provider) playerViewModelProvider)).put(LazyClassKeyProvider.com_example_aniplay_viewmodel_ProfileViewModel, ((Provider) profileViewModelProvider)).build());
     }
 
     @Override
@@ -439,8 +473,23 @@ public final class DaggerAniPlayApplication_HiltComponents_SingletonC {
     private static final class LazyClassKeyProvider {
       static String com_example_aniplay_viewmodel_HomeViewModel = "com.example.aniplay.viewmodel.HomeViewModel";
 
+      static String com_example_aniplay_viewmodel_PlayerViewModel = "com.example.aniplay.viewmodel.PlayerViewModel";
+
+      static String com_example_aniplay_viewmodel_FavoritesViewModel = "com.example.aniplay.viewmodel.FavoritesViewModel";
+
+      static String com_example_aniplay_viewmodel_ProfileViewModel = "com.example.aniplay.viewmodel.ProfileViewModel";
+
       @KeepFieldType
       HomeViewModel com_example_aniplay_viewmodel_HomeViewModel2;
+
+      @KeepFieldType
+      PlayerViewModel com_example_aniplay_viewmodel_PlayerViewModel2;
+
+      @KeepFieldType
+      FavoritesViewModel com_example_aniplay_viewmodel_FavoritesViewModel2;
+
+      @KeepFieldType
+      ProfileViewModel com_example_aniplay_viewmodel_ProfileViewModel2;
     }
 
     private static final class SwitchingProvider<T> implements Provider<T> {
@@ -464,8 +513,17 @@ public final class DaggerAniPlayApplication_HiltComponents_SingletonC {
       @Override
       public T get() {
         switch (id) {
-          case 0: // com.example.aniplay.viewmodel.HomeViewModel 
+          case 0: // com.example.aniplay.viewmodel.FavoritesViewModel 
+          return (T) new FavoritesViewModel(singletonCImpl.animeRepositoryProvider.get());
+
+          case 1: // com.example.aniplay.viewmodel.HomeViewModel 
           return (T) new HomeViewModel(singletonCImpl.animeRepositoryProvider.get());
+
+          case 2: // com.example.aniplay.viewmodel.PlayerViewModel 
+          return (T) new PlayerViewModel(singletonCImpl.animeRepositoryProvider.get());
+
+          case 3: // com.example.aniplay.viewmodel.ProfileViewModel 
+          return (T) new ProfileViewModel(singletonCImpl.profileRepositoryProvider.get());
 
           default: throw new AssertionError(id);
         }
@@ -551,6 +609,8 @@ public final class DaggerAniPlayApplication_HiltComponents_SingletonC {
 
     private Provider<AnimeRepository> animeRepositoryProvider;
 
+    private Provider<ProfileRepository> profileRepositoryProvider;
+
     private SingletonCImpl(ApplicationContextModule applicationContextModuleParam) {
       this.applicationContextModule = applicationContextModuleParam;
       initialize(applicationContextModuleParam);
@@ -561,10 +621,15 @@ public final class DaggerAniPlayApplication_HiltComponents_SingletonC {
       return DatabaseModule_ProvideFavoriteAnimeDaoFactory.provideFavoriteAnimeDao(provideDatabaseProvider.get());
     }
 
+    private UserProfileDao userProfileDao() {
+      return DatabaseModule_ProvideUserProfileDaoFactory.provideUserProfileDao(provideDatabaseProvider.get());
+    }
+
     @SuppressWarnings("unchecked")
     private void initialize(final ApplicationContextModule applicationContextModuleParam) {
       this.provideDatabaseProvider = DoubleCheck.provider(new SwitchingProvider<AniPlayDatabase>(singletonCImpl, 1));
       this.animeRepositoryProvider = DoubleCheck.provider(new SwitchingProvider<AnimeRepository>(singletonCImpl, 0));
+      this.profileRepositoryProvider = DoubleCheck.provider(new SwitchingProvider<ProfileRepository>(singletonCImpl, 2));
     }
 
     @Override
@@ -605,6 +670,9 @@ public final class DaggerAniPlayApplication_HiltComponents_SingletonC {
 
           case 1: // com.example.aniplay.data.local.AniPlayDatabase 
           return (T) DatabaseModule_ProvideDatabaseFactory.provideDatabase(ApplicationContextModule_ProvideContextFactory.provideContext(singletonCImpl.applicationContextModule));
+
+          case 2: // com.example.aniplay.data.repository.ProfileRepository 
+          return (T) new ProfileRepository(singletonCImpl.userProfileDao());
 
           default: throw new AssertionError(id);
         }

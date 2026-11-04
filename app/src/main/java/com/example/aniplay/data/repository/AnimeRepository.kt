@@ -4,7 +4,9 @@ import com.example.aniplay.data.local.FavoriteAnimeDao
 import com.example.aniplay.data.local.FavoriteAnimeEntity
 import com.example.aniplay.data.local.toFavoriteEntity
 import com.example.aniplay.data.mock.MockAnimeData
+import com.example.aniplay.data.mock.MockEpisodeData
 import com.example.aniplay.model.Anime
+import com.example.aniplay.model.Episode
 import com.example.aniplay.model.HomeFeed
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -38,6 +40,19 @@ class AnimeRepository @Inject constructor(
     suspend fun getAnimeById(id: Int): Anime? {
         delay(NETWORK_DELAY_MS)
         return MockAnimeData.animes.firstOrNull { it.id == id }
+    }
+
+    // ---------------- Episódios (Player - INTEGRANTE 3) ----------------
+
+    suspend fun getEpisodesForAnime(animeId: Int): List<Episode> {
+        delay(NETWORK_DELAY_MS / 2)
+        val anime = MockAnimeData.animes.firstOrNull { it.id == animeId } ?: return emptyList()
+        return MockEpisodeData.getEpisodesForAnime(animeId, anime.episodes)
+    }
+
+    suspend fun getEpisode(animeId: Int, episodeNumber: Int): Episode? {
+        val list = getEpisodesForAnime(animeId)
+        return list.firstOrNull { it.number == episodeNumber } ?: list.firstOrNull()
     }
 
     // ---------------- Favoritos (Room) ----------------

@@ -8,13 +8,13 @@ Projeto acadêmico de aplicativo Android inspirado no Crunchyroll com Compose e 
 3. Run no emulador (API 24+). Precisa de internet para as imagens de exemplo.
 
 ## Divisão das telas
-| Tela | Arquivo | Responsável |
-|------|---------|-------------|
-| 1. Home | `ui/home/*`, `viewmodel/HomeViewModel.kt` | Gustavo J (pronta) |
-| 2. Detalhes | `ui/detail/DetailScreen.kt` | Gustavo J (Em Andamento) |
-| 3. Player | `ui/player/PlayerScreen.kt` | Gustavo C (pronta) |
-| 4. Minha Lista | `ui/favorites/FavoritesScreen.kt` | Gustavo C (pronta) |
-| 5. Perfil | `ui/profile/ProfileScreen.kt` | João P (pronta) |
+| Tela | Arquivos | Responsável / Status |
+|------|----------|----------------------|
+| 1. Home | `ui/home/*`, `viewmodel/HomeViewModel.kt` | Integrante 1 (Pronta) |
+| 2. Detalhes | `ui/detail/DetailScreen.kt` | Integrante 2 (Em andamento) |
+| 3. Player | `ui/player/PlayerScreen.kt`, `viewmodel/PlayerViewModel.kt` | Integrante 3 (Pronta) |
+| 4. Minha Lista | `ui/favorites/FavoritesScreen.kt`, `viewmodel/FavoritesViewModel.kt` | Integrante 4 (Pronta) |
+| 5. Perfil | `ui/profile/ProfileScreen.kt`, `viewmodel/ProfileViewModel.kt` | Integrante 5 (Pronta) |
 
 ## Regras para evitar conflito de merge
 - Cada pessoa cria seu próprio `viewmodel/<Tela>ViewModel.kt` com `@HiltViewModel`.
